@@ -1,10 +1,22 @@
 import {overviewBanner} from '@/assets';
 import {overviewData} from '@/Constant';
+import {motion, type Variants} from 'framer-motion';
 import {Play} from 'lucide-react';
 
 const Overview = () => {
+  const OverViewVariant: Variants = {
+    start: {
+      opacity: 0,
+      y: '5%'
+    },
+    end: {
+      opacity: 1,
+      y: '0%',
+      transition: {duration: 2, }
+    }
+  };
   return (
-    <section className='text-center mt-20'>
+    <motion.section variants={OverViewVariant} initial='start' whileInView='end' viewport={{once: true}} className='text-center mt-20'>
       <div className='md:w-115 mx-auto '>
         <h3 className='uppercase text-background'>{overviewData.sectionSubtitle}</h3>
         <h2 className='my-5 text-3xl'>{overviewData.sectionTitle}</h2>
@@ -27,7 +39,7 @@ const Overview = () => {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

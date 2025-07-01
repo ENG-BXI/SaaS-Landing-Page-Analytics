@@ -1,8 +1,20 @@
 import {processBanner} from '@/assets';
 import {processData} from '@/Constant';
+import {motion, type Variants} from 'framer-motion';
 const Process = () => {
+  const ProcessVariant: Variants = {
+    start: {
+      opacity: 0,
+      y: '5%'
+    },
+    end: {
+      opacity: 1,
+      y: '0%',
+      transition: {duration: 2}
+    }
+  };
   return (
-    <section className='mt-20'>
+    <motion.section variants={ProcessVariant} initial='start' whileInView='end' viewport={{once: true}} className='mt-20'>
       <div className='text-center mx-auto md:w-110 mb-10'>
         <h3 className='uppercase text-background'>{processData.sectionSubtitle}</h3>
         <h2 className='text-3xl my-2'>{processData.sectionTitle}</h2>
@@ -24,7 +36,7 @@ const Process = () => {
           <img className='' src={processBanner} alt='processBanner' />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

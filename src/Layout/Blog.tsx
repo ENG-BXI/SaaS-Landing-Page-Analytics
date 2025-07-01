@@ -1,16 +1,32 @@
 import {blogData} from '@/Constant';
+import {motion, type Variants} from 'framer-motion';
 
 const Blog = () => {
+  const BlogVariant: Variants = {
+    start: {
+      opacity: 0,
+      y: '5%'
+    },
+    end: {
+      opacity: 1,
+      y: '0%',
+      transition: {duration: 2, staggerChildren: 0.3}
+    }
+  };
+  const child: Variants = {
+    start: {opacity: 0, y: '10%'},
+    end: {opacity: 1, y: '0%'}
+  };
   return (
-    <section className='mt-20'>
+    <motion.section variants={BlogVariant} initial='start' whileInView='end' viewport={{once: true}} className='mt-20'>
       <div className='text-center mx-auto md:w-120 mb-10'>
         <h3 className='text-background uppercase'>{blogData.sectionSubtitle}</h3>
         <h2 className='font-bold text-3xl my-2'>{blogData.sectionTitle}</h2>
         <p className='text-gray-400'>{blogData.sectionText}</p>
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:mx-35'>
+      <motion.div variants={BlogVariant} initial='start' whileInView='end' viewport={{once: true}} className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:mx-35'>
         {blogData.blogs.map(({author, badge, imgSrc, title}) => (
-          <div className='bg-[#111014] col-span-1 p-5 rounded-lg group '>
+          <motion.div variants={child} viewport={{once: true}} className='bg-[#111014] col-span-1 p-5 rounded-lg group '>
             <div className='rounded-md overflow-hidden'>
               <img className='object-fit-contain group-hover:scale-104 duration-300' src={imgSrc} alt={title} />
             </div>
@@ -26,10 +42,10 @@ const Blog = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 
