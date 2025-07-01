@@ -1,17 +1,11 @@
-"use client";
-import React, { useRef } from "react";
-import { useScroll, useTransform, motion, MotionValue } from "motion/react";
+'use client';
+import React, {useRef} from 'react';
+import {useScroll, useTransform, motion, MotionValue} from 'motion/react';
 
-export const ContainerScroll = ({
-  titleComponent,
-  children,
-}: {
-  titleComponent: string | React.ReactNode;
-  children: React.ReactNode;
-}) => {
+export const ContainerScroll = ({titleComponent, children}: {titleComponent: string | React.ReactNode; children: React.ReactNode}) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
+  const {scrollYProgress} = useScroll({
+    target: containerRef
   });
   const [isMobile, setIsMobile] = React.useState(false);
 
@@ -20,9 +14,9 @@ export const ContainerScroll = ({
       setIsMobile(window.innerWidth <= 768);
     };
     checkMobile();
-    window.addEventListener("resize", checkMobile);
+    window.addEventListener('resize', checkMobile);
     return () => {
-      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener('resize', checkMobile);
     };
   }, []);
 
@@ -35,14 +29,11 @@ export const ContainerScroll = ({
   const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
-    <div
-      className="h-[60rem]  md:h-[60rem] flex items-center justify-center relative p-2 md:p-10"
-      ref={containerRef}
-    >
+    <div className='h-[50rem] md:h-[60rem] flex items-center justify-center relative p-0 -mt-40 md:mt-0 md:p-10' ref={containerRef}>
       <div
-        className="py-10 md:py-40 w-full relative"
+        className='py-10 md:py-40 w-full relative'
         style={{
-          perspective: "1000px",
+          perspective: '1000px'
         }}
       >
         <Header translate={translate} titleComponent={titleComponent} />
@@ -55,29 +46,20 @@ export const ContainerScroll = ({
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const Header = ({ translate, titleComponent }: any) => {
+export const Header = ({translate, titleComponent}: any) => {
   return (
     <motion.div
       style={{
-        translateY: translate,
+        translateY: translate
       }}
-      className="div max-w-5xl mx-auto text-center"
+      className='div max-w-5xl mx-auto text-center'
     >
       {titleComponent}
     </motion.div>
   );
 };
 
-export const Card = ({
-  rotate,
-  scale,
-  children,
-}: {
-  rotate: MotionValue<number>;
-  scale: MotionValue<number>;
-  translate: MotionValue<number>;
-  children: React.ReactNode;
-}) => {
+export const Card = ({rotate, scale, children}: {rotate: MotionValue<number>; scale: MotionValue<number>; translate: MotionValue<number>; children: React.ReactNode}) => {
   return (
     <motion.div
       style={{
@@ -85,7 +67,7 @@ export const Card = ({
         scale,
         boxShadow: '0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003'
       }}
-      className='max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full border-2 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl'
+      className='max-w-5xl -mt-12 mx-auto h-auto md:h-[30rem] md:h-[40rem] w-full border-2 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl'
     >
       <div className=' h-full w-full overflow-hidden rounded-2xl bg-black dark:bg-zinc-900 md:rounded-2xl md:p-4 '>{children}</div>
     </motion.div>

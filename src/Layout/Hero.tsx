@@ -30,7 +30,7 @@ const Hero = () => {
       </div>
       <motion.div variants={{...headerVariant, end: {opacity: 1, transition: {duration: 1.2, delay: 1}, y: '0'}}} initial='start' animate='end' className='overflow-hidden mx-auto drop-shadow-[0_0_100px] drop-shadow-background'>
         <ContainerScroll titleComponent=''>
-          <img className='object-fit-cover mx-auto' src={overviewBanner} alt='Hero_Image' />
+          <img className='object-fit-c mx-auto' src={overviewBanner} alt='Hero_Image' />
         </ContainerScroll>
       </motion.div>
     </section>
